@@ -1,0 +1,63 @@
+<section
+  class="w-full h-[calc(100vh-13rem)] absolute left-0 flex justify-center items-center flex-col"
+>
+  @defer (when users){
+  <div class="w-10/12 bg-[#141021] rounded-lg p-20">
+    <h1 class="text-4xl text-center text-white mb-10">Users</h1>
+    <div class="w-full grid grid-cols-3 gap-10">
+      @for(user of users ; track user.email){
+      <div
+        [routerLink]="['/users', user.uid]"
+        class="w-full rounded-md bg-[#262330] flex flex-col justify-center items-center p-4 gap-4 cursor-pointer transition-all duration-500 hover:bg-[#100C1C]"
+      >
+        <img [src]="user.image" class="w-24 rounded-full" />
+        <p class="text-xl text-gray-400 bg-black rounded-full px-4 py-1">
+          {{ user.nickname }}
+        </p>
+        <p class="text-sm bg-slate-800 px-2 py-1 rounded-full -mt-3">
+          {{ user.uid }}
+        </p>
+        <p class="text-xl text-gray-300">{{ user.email }}</p>
+        <p class="mb-4 text-sm">created at: {{ user.createdAt | date }}</p>
+      </div>
+      }
+    </div>
+    <div class="w-full flex justify-center mt-10">
+      <button
+        class="text-white px-4 py-2 rounded-full transition-all duration-500 hover:bg-slate-400 hover:text-black cursor-pointer"
+        [ngClass]="{
+          'bg-black': currentPage !== 1,
+          'bg-transparent': currentPage === 1,
+          'cursor-not-allowed': currentPage === 1
+        }"
+        (click)="goToPage(currentPage - 1)"
+        [disabled]="currentPage === 1"
+      >
+        ᐊ
+      </button>
+
+      <span
+        class="px-4 py-2 rounded-full transition-all duration-500 bg-slate-400 text-black cursor-pointer ml-4"
+        >Page {{ currentPage }} of {{ totalPages }}</span
+      >
+
+      <button
+        class="text-white px-4 py-2 rounded-full transition-all duration-500 hover:bg-slate-400 hover:text-black cursor-pointer ml-4"
+        [ngClass]="{
+          'bg-black': currentPage !== totalPages,
+          'bg-transparent': currentPage === totalPages,
+          'cursor-not-allowed': currentPage === totalPages
+        }"
+        (click)="goToPage(currentPage + 1)"
+        [disabled]="currentPage === totalPages"
+      >
+        ᐅ
+      </button>
+    </div>
+  </div>
+  } @placeholder {
+  <p>loaging..</p>
+  } @loading {
+  <p>loaging..</p>
+  }
+</section>

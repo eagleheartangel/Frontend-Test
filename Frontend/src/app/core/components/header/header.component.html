@@ -1,0 +1,62 @@
+<header
+  class="w-screen h-14 grid grid-cols-8 transition-all duration-500 backdrop-blur-lg text-xl font-semibold bg-transparent text-[#B1CD49]"
+>
+  <div
+    [ngClass]="{
+      'justify-end': !identity()?.token,
+      'justify-evenly': identity()?.token
+    }"
+    class="w-screen col-span-3 flex items-center"
+  >
+    @if (identity()?.token) {
+    <button
+      [routerLink]="['/home']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLinkActive="router-link-active"
+      ariaCurrentWhenActive="page"
+      class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md font-medium cursor-pointer"
+    >
+      <div
+        class="inline-flex h-12 items-center justify-center px-6 transition-all duration-500 underline underline-offset-8 decoration-transparent hover:decoration-[#B1CD49] decoration-wavy"
+      >
+        Home
+      </div>
+    </button>
+    <button
+      [routerLink]="['/users/page/1']"
+      [ngClass]="{ 'router-link-active': isActiveRoute('/users') }"
+      ariaCurrentWhenActive="page"
+      class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md font-medium cursor-pointer"
+    >
+      <div
+        class="inline-flex h-12 items-center justify-center px-6 transition-all duration-500 underline underline-offset-8 decoration-transparent hover:decoration-[#B1CD49] decoration-wavy"
+      >
+        Users
+      </div>
+    </button>
+    } @if(identity()?.token) {
+    <img
+      (click)="logoutModal()"
+      class="w-14 h-14 rounded-full transition-all duration-500 hover:scale-125 cursor-pointer"
+      [src]="identity()?.user?.image"
+      alt="Rounded avatar"
+    />
+    } @else {
+    <button
+      [routerLink]="['/signin']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      routerLinkActive="router-link-active"
+      ariaCurrentWhenActive="page"
+      class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md font-medium cursor-pointer"
+    >
+      <div
+        class="inline-flex h-12 items-center justify-center px-6 transition-all duration-500 underline underline-offset-8 decoration-transparent hover:decoration-[#B1CD49] decoration-wavy"
+      >
+        Signin
+      </div>
+    </button>
+    }
+  </div>
+</header>
+
+<app-logout />

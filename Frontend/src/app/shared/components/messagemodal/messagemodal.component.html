@@ -1,0 +1,17 @@
+@if(modal().modal){
+<section
+  class="w-full h-screen flex justify-center items-center fixed top-0 left-0 backdrop-blur-sm bg-black/30"
+>
+  <div class="w-1/2 bg-slate-900 p-10">
+    <div class="flex flex-col justify-center items-center gap-4">
+      <p class="text-2xl text-white">{{ modal().message }}</p>
+      <button
+        (click)="closeModal()"
+        class="w-1/2 h-10 bg-gray-950 hover:bg-[#B1CD49] rounded-lg hover:text-gray-900 transition-all duration-500 text-xl mx-auto"
+      >
+        Accept
+      </button>
+    </div>
+  </div>
+</section>
+}

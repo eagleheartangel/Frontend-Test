@@ -1,0 +1,94 @@
+<section class="w-full h-[calc(100vh-11rem)] flex justify-center items-center">
+  <div class="w-1/2 bg-gray-900 rounded-lg p-20">
+    <h1 class="text-4xl text-center text-white mb-10">Sign Up</h1>
+    <form
+      [formGroup]="signupForm!"
+      (ngSubmit)="signup()"
+      class="flex flex-col gap-4"
+    >
+      <div class="w-full flex flex-col justify-center items-center gap-4">
+        <div class="w-full flex flex-col justify-center items-center">
+          <div class="w-2/3 flex justify-between items-center">
+            <p class="pr-5 text-xl">nickname:</p>
+            <input
+              class="w-9/12 h-10 rounded-lg bg-[#0c3053] hover:bg-[#000000] focus:bg-[#000000] px-5 focus:outline-none text-white transition-all duration-500"
+              type="text"
+              formControlName="nickname"
+              maxlength="31"
+            />
+          </div>
+          <p
+            *ngIf="isvalid('nickname')"
+            class="dark:text-red-400 text-red-800 mb-4 mt-1"
+          >
+            {{ envErrormsg("nickname") }}
+          </p>
+        </div>
+        <div class="w-full flex flex-col justify-center items-center">
+          <div class="w-2/3 flex justify-between items-center">
+            <p class="pr-5 text-xl">email:</p>
+            <input
+              class="w-9/12 h-10 rounded-lg bg-[#0c3053] hover:bg-[#000000] focus:bg-[#000000] px-5 focus:outline-none text-white transition-all duration-500"
+              type="text"
+              formControlName="email"
+              maxlength="31"
+            />
+          </div>
+          <p
+            *ngIf="isvalid('email')"
+            class="dark:text-red-400 text-red-800 mb-4 mt-1"
+          >
+            {{ envErrormsg("email") }}
+          </p>
+        </div>
+        <div class="w-full flex flex-col justify-center items-center">
+          <div class="w-2/3 flex justify-between items-center">
+            <p class="pr-5 text-xl">password:</p>
+            <input
+              class="w-9/12 h-10 rounded-lg bg-[#0c3053] hover:bg-[#000000] focus:bg-[#000000] px-5 focus:outline-none text-white transition-all duration-500"
+              type="text"
+              formControlName="password"
+              maxlength="31"
+            />
+          </div>
+          <p
+            *ngIf="isvalid('password')"
+            class="dark:text-red-400 text-red-800 mb-4 mt-1 mx-auto"
+          >
+            {{ envErrormsg("password") }}
+          </p>
+        </div>
+        <button
+          type="submit"
+          [disabled]="signupForm.pending"
+          class="w-1/2 h-10 bg-gray-950 hover:bg-[#B1CD49] rounded-lg hover:text-gray-900 transition-all duration-500 text-xl mx-auto"
+        >
+          Signup
+        </button>
+      </div>
+
+      <!-- <div class="flex flex-row">
+        <span>email:</span>
+        <pre>{{ signinForm.controls["email"].errors | json }}</pre>
+      </div>
+      <div class="flex flex-col">
+        <div class="flex flex-row">
+          <span>Valid:</span>
+          <pre>{{ signinForm.valid }}</pre>
+        </div>
+
+        <div class="flex flex-row">
+          <span>Pristine:</span>
+          <pre>{{ signinForm.pristine }}</pre>
+        </div>
+
+        <div class="flex flex-row">
+          <span>Touched:</span>
+          <pre>{{ signinForm.touched }}</pre>
+        </div>
+      </div> -->
+    </form>
+  </div>
+</section>
+
+<app-messagemodal />

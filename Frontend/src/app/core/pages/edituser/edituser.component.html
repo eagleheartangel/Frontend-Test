@@ -1,0 +1,56 @@
+@defer (when user){
+<section
+  class="w-full h-[calc(100vh-13rem)] absolute left-0 flex justify-center items-center flex-col"
+>
+  <div
+    class="w-1/2 rounded-md bg-[#262330] flex flex-col justify-center items-center p-4 gap-4 transition-all duration-500 hover:bg-[#15111d]"
+  >
+    <img [src]="user!.image" class="w-24 rounded-full" />
+    <p class="text-xl text-gray-400 bg-black rounded-full px-4 py-1">
+      {{ user!.nickname }}
+    </p>
+    <p class="text-sm bg-slate-800 px-2 py-1 rounded-full -mt-3">
+      {{ user!.uid }}
+    </p>
+    <p class="text-xl text-gray-300">{{ user!.email }}</p>
+    <p class="mb-4 text-sm">created at: {{ user!.createdAt | date }}</p>
+
+    <form
+      [formGroup]="userForm"
+      (ngSubmit)="edit()"
+      class="flex flex-col gap-4"
+    >
+      <div class="w-full flex flex-col justify-center items-center gap-4">
+        <div class="w-full flex flex-col justify-center items-center">
+          <div class="w-2/3 flex justify-between items-center">
+            <p class="pr-5 text-xl">nickname:</p>
+            <input
+              class="w-12/12 h-10 rounded-lg bg-[#0c3053] hover:bg-[#000000] focus:bg-[#000000] px-5 focus:outline-none text-white transition-all duration-500"
+              type="text"
+              formControlName="nickname"
+              maxlength="31"
+            />
+          </div>
+          <p
+            *ngIf="isvalid('nickname')"
+            class="dark:text-red-400 text-red-800 mb-4 mt-1 mx-auto"
+          >
+            {{ envErrormsg("nickname") }}
+          </p>
+        </div>
+        <button
+          type="submit"
+          [disabled]="userForm.pending"
+          class="w-1/2 h-10 bg-gray-950 hover:bg-[#B1CD49] rounded-lg hover:text-gray-900 transition-all duration-500 text-xl mx-auto"
+        >
+          Edit
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+} @placeholder {
+<p>loaging..</p>
+} @loading {
+<p>loaging..</p>
+}

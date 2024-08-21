@@ -1,0 +1,29 @@
+@defer (when user){
+<section
+  class="w-full h-[calc(100vh-13rem)] absolute left-0 flex justify-center items-center flex-col"
+>
+  <div
+    class="w-1/2 rounded-md bg-[#262330] flex flex-col justify-center items-center p-4 gap-4 transition-all duration-500 hover:bg-[#0a0712]"
+  >
+    <img [src]="user!.image" class="w-24 rounded-full" />
+    <p class="text-xl text-gray-400 bg-black rounded-full px-4 py-1">
+      {{ user!.nickname }}
+    </p>
+    <p class="text-sm bg-slate-800 px-2 py-1 rounded-full -mt-3">
+      {{ user!.uid }}
+    </p>
+    <p class="text-xl text-gray-300">{{ user!.email }}</p>
+    <p class="mb-4 text-sm">created at: {{ user!.createdAt | date }}</p>
+    <button
+      [routerLink]="['/users/edit', user!.uid]"
+      class="w-1/2 h-10 bg-gray-950 hover:bg-[#B1CD49] rounded-lg hover:text-gray-900 transition-all duration-500 text-xl mx-auto"
+    >
+      Edit nickname
+    </button>
+  </div>
+</section>
+} @placeholder {
+<p>loaging..</p>
+} @loading {
+<p>loaging..</p>
+}
